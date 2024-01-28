@@ -1,0 +1,55 @@
+<div class="parent">
+  <h3>予定一覧</h3>
+  <p class="inline_block"><%= link_to "新規予定作成", :new_content %></p>
+</div>
+
+<% if flash[:notice] %>
+  <p class="notice"><%= flash[:notice] %></p>
+<% end %>
+
+<table class="table_index">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>タイトル</th>
+      <th>開始日</th>
+      <th>終了日</th>
+      <th>終日</th>
+      <th>更新日時</th>
+      <th class="font_white">詳細</th>
+      <th class="font_white">編集</th>
+      <th class="font_white">削除</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contents.each do |content| %>
+      <tr>
+        <td><%= content.id %></td>
+        <td><%= content.title %></td>
+        <td><%= content.start_date.to_s(:datetime_jp) %></td>
+        <td><%= content.end_date.to_s(:datetime_jp) %></td>
+        <td>
+          <% if content.all_day == true %>
+          ◯
+          <% else content.all_day == false %>
+          <% end %>
+        </td>
+        <td><%= content.updated_at.to_s(:datetime_hour_minute_jp) %></td>
+        <td>
+          <%= link_to "詳細", content %>
+        </td>
+        <td>
+          <%= link_to "編集", [:edit, content] %>
+        </td>
+        <td>
+          <%= link_to "削除", content, method: :delete, data: { confirm: "本当に削除しますか？" } %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="parent">
+  <p>予定合計<span class="font_bold"><%= Content.count %></span>件</p>
+  <p class="inline_block">本日の日付 <%= Time.new.to_s(:datetime_jp) %></p>
+</div>

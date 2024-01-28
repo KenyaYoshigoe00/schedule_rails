@@ -1,0 +1,36 @@
+.parent {
+  display: flex;
+  justify-content: space-between;
+}
+
+.inline_block {
+  display: inline-block;
+}
+
+.table_index {
+  border: 2px ridge #000000;
+  width: 100%;
+}
+
+th {
+  border-bottom: 2px dotted #000000;
+}
+
+td {
+  border-bottom: 2px dotted #000000;
+  padding-left: 8px;
+  padding-right: 8px;
+  text-align: center;
+}
+
+.font_white {
+  color: #ffffff
+}
+
+.font_bold {
+  font-weight: bold;
+}
+
+.show {
+  width: 50%;
+}
